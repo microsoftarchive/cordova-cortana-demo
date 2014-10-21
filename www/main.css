@@ -1,0 +1,12 @@
+.navbar-header{
+}
+
+.navbar-toggle{
+	margin-left: 15px;
+}
+
+.navbar-brand{
+	float: none;
+	display: block;
+	font-weight: bold;
+}

@@ -1,0 +1,147 @@
+{
+  "schedule": [{
+    "start": 1414164600000,
+    "end": 1414168200000,
+    "speakers": [],
+    "title": " Registration & Breakfast"
+  }, {
+    "start": 1414168200000,
+    "end": 1414169100000,
+    "speakers": [
+      "Brian Leroux"
+    ],
+    "title": " Opening Remarks"
+  }, {
+    "start": 1414169100000,
+    "end": 1414170000000,
+    "speakers": [
+      "Tim Kim",
+      "Herm Wong"
+    ],
+    "title": " The new PhoneGap Developer Apps"
+  }, {
+    "start": 1414170000000,
+    "end": 1414171200000,
+    "speakers": [
+      "Jesse Freeman"
+    ],
+    "title": "Publishing PhoneGap Apps to the Amazon AppStore"
+  }, {
+    "start": 1414171200000,
+    "end": 1414172100000,
+    "speakers": [
+      "Anis Kadri"
+    ],
+    "title": " Introducing PhoneGap Enterprise"
+  }, {
+    "start": 1414172100000,
+    "end": 1414173600000,
+    "speakers": "",
+    "title": " Break"
+  }, {
+    "start": 1414173600000,
+    "end": 1414174800000,
+    "speakers": [
+      "Piotr Zalewa"
+    ],
+    "title": " Cordova, Firefox OS & new tools for app development"
+  }, {
+    "start": 1414174800000,
+    "end": 1414176000000,
+    "speakers": [
+      "Brett Rudd"
+    ],
+    "title": " PhoneGap Build is Open Source"
+  }, {
+    "start": 1414176000000,
+    "end": 1414177200000,
+    "speakers": [
+      "Telerik"
+    ],
+    "title": "Telerik"
+  }, {
+    "start": 1414177200000,
+    "end": 1414178100000,
+    "speakers": [
+      "Joe Bowser"
+    ],
+    "title": " Many Webviews on PhoneGap Android"
+  }, {
+    "start": 1414178100000,
+    "end": 1414182600000,
+    "speakers": [],
+    "title": " Lunch"
+  }, {
+    "start": 1414182600000,
+    "end": 1414185000000,
+    "speakers": [
+      "Microsoft"
+    ],
+    "title": " What’s up with Cordova on Windows, Windows Phone and Visual Studio - Microsoft"
+  }, {
+    "start": 1414185000000,
+    "end": 1414186200000,
+    "speakers": [
+      "Mike Hartington"
+    ],
+    "title": " Ionic: Basically its totally sweet"
+  }, {
+    "start": 1414186200000,
+    "end": 1414187100000,
+    "speakers": [
+      "Bruce Lefebvre"
+    ],
+    "title": " Enterprise: not just a dirty word any more"
+  }, {
+    "start": 1414187100000,
+    "end": 1414188600000,
+    "speakers": [],
+    "title": " Break"
+  }, {
+    "start": 1414145400000,
+    "end": 1414146900000,
+    "speakers": [
+      "Paul Fischer"
+    ],
+    "title": " An IDE for Cordova!?"
+  }, {
+    "start": 1414190100000,
+    "end": 1414191000000,
+    "speakers": [
+      "Matt May"
+    ],
+    "title": " PhoneGap Accessibility"
+  }, {
+    "start": 1414191000000,
+    "end": 1414191900000,
+    "speakers": [
+      "Justin Vaillancourt"
+    ],
+    "title": "Mobify"
+  }, {
+    "start": 1414191900000,
+    "end": 1414193400000,
+    "speakers": [],
+    "title": " Google's focus on Apache Cordova"
+  }, {
+    "start": 1414193400000,
+    "end": 1414196400000,
+    "speakers": [
+      "Geniutec"
+    ],
+    "title": " GapDebug tooling "
+  }, {
+    "start": 1414196400000,
+    "end": 1414196400000,
+    "speakers": [
+      "Shazron Abdullah"
+    ],
+    "title": " State of the Union"
+  }, {
+    "start": 1414196700000,
+    "end": 1414206000000,
+    "speakers": [],
+    "title": " Pub Mixer (goes until 8pm'ish)"
+  }],
+  "speakers": {}
+}
