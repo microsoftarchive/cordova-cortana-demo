@@ -33,11 +33,18 @@ var app = (function() {
 	    onDeviceReady: function () {
 	        cordova.plugins.cortana.installVoiceCommandSet('ms-appx:///www/assets/commands.vcd', function () {
 	            console.log('COMMANDS INSTALLED <from callback>');
-	            cordova.plugins.cortana.setPhraseList('phonegapday', 'name', ["Tim", "Kirk"], function () {
-	                console.log('PHRASE LIST SET <from callback>');
-	            }, function (err) {
-	                console.error('PHRASE LIST NOT SET <from callback> DUE TO ' + JSON.stringify(err));
-	            });
+	            app.data().then(function(data) {
+	                var names = data.schedule.map(function (session) {
+	                    return !session.speakers ? [] : session.speakers.map(function (speaker) {
+	                		return !speaker ? [] : speaker.split(' '); 
+	                	}); 
+	                }).reduce(Function.prototype.apply.bind(Array.prototype.concat));
+		            cordova.plugins.cortana.setPhraseList('phonegapday', 'name', names, function () {
+		                console.log('PHRASE LIST SET <from callback>');
+		            }, function (err) {
+		                console.error('PHRASE LIST NOT SET <from callback> DUE TO ' + JSON.stringify(err));
+		            });
+		        });
 	        }, function (err) {
 	            console.error('COMMANDS NOT INSTALLED <from callback> DUE TO ' + JSON.stringify(err));
 	        });
@@ -57,8 +64,10 @@ var app = (function() {
 	            console.log("at -> " + command.semanticInterpretation.properties.time[0]);
 	        } else if (command.rulePath[0] === "showBy") {
 	            console.log("by -> " + command.semanticInterpretation.properties.name[0]);
+	            app.find(command.semanticInterpretation.properties.name[0], true);
 	        } else if (command.rulePath[0] === "showNext") {
 	            console.log("next!");
+	            app.findByTime(Date.now(), false);
 	        }
 	    },
 		data: function() {
