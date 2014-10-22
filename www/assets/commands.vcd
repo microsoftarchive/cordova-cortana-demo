@@ -3,7 +3,7 @@
 
   <CommandSet xml:lang="en-us" Name="phonegapday">
     <CommandPrefix>phonegap day</CommandPrefix>
-    <Example>Show next</Example>
+    <Example>when is the next session</Example>
 
     <Command Name="activateApp">
       <Example>Activate</Example>
@@ -13,28 +13,27 @@
     </Command>
     
     <Command Name="showNext">
-      <Example>Show next</Example>
-      <ListenFor>[Show] [Find] next</ListenFor>
-      <Feedback>Showing next</Feedback>
+      <Example>what is the next session</Example>
+      <ListenFor>[Show] [Find] [what is] [when is] [the] next [session]</ListenFor>
+      <Feedback>Showing next session</Feedback>
       <Navigate/>
     </Command>
 
     <Command Name="showAt">
-      <Example>Show at 1pm</Example>
-      <ListenFor>[Show] [Find] at {time}</ListenFor>
+      <Example>what is happening at 1pm</Example>
+      <ListenFor>[Show] [Find] what is happening at {time}</ListenFor>
       <Feedback>Showing at {time}</Feedback>
       <Navigate/>
     </Command>
 
     <Command Name="showBy">
-      <Example>Show by Microsoft</Example>
-      <ListenFor>[Show] [Find] by {name}</ListenFor>
+      <Example>when is Matt speaking</Example>
+      <ListenFor>[Show] [Find] [when is] [what is] {name} speaking [about]</ListenFor>
       <Feedback>Showing by {name}</Feedback>
       <Navigate/>
     </Command>
 
     <PhraseList Label="name">
-      <Item>Microsoft</Item>
     </PhraseList>
     
     <PhraseTopic Label="time" Scenario="Search">

@@ -32,15 +32,14 @@ var app = (function() {
 	    // function, we must explicitly call 'app.receivedEvent(...);'
 	    onDeviceReady: function () {
 	        cordova.plugins.cortana.installVoiceCommandSet('ms-appx:///www/assets/commands.vcd', function () {
-	            console.log('COMMANDS INSTALLED <from callback>');
 	            app.data().then(function(data) {
 	                var names = data.schedule.map(function (session) {
 	                    return !session.speakers ? [] : session.speakers.map(function (speaker) {
 	                		return !speaker ? [] : speaker.split(' '); 
 	                	}); 
 	                }).reduce(Function.prototype.apply.bind(Array.prototype.concat));
+	                // reduce one-liner from (http://stackoverflow.com/a/25595276)
 		            cordova.plugins.cortana.setPhraseList('phonegapday', 'name', names, function () {
-		                console.log('PHRASE LIST SET <from callback>');
 		            }, function (err) {
 		                console.error('PHRASE LIST NOT SET <from callback> DUE TO ' + JSON.stringify(err));
 		            });
@@ -58,16 +57,30 @@ var app = (function() {
 	    // The scope of 'this' is the event. In order to call the 'receivedEvent'
 	    // function, we must explicitly call 'app.receivedEvent(...);'
 	    onVoiceCommand: function (command) {
-	        console.log('GOT VOICE COMMAND:');
-	        console.log(JSON.stringify(command));
 	        if (command.rulePath[0] === "showAt") {
-	            console.log("at -> " + command.semanticInterpretation.properties.time[0]);
-	        } else if (command.rulePath[0] === "showBy") {
-	            console.log("by -> " + command.semanticInterpretation.properties.name[0]);
-	            app.find(command.semanticInterpretation.properties.name[0], true);
+	            app.findByTime(command.semanticInterpretation.properties.time[0], true).then(function (result) {
+	                if (result) {
+	                    app.details(result.title);
+	                } else {
+                        // nothing happening at this time
+	                }
+	            });
+            } else if (command.rulePath[0] === "showBy") {
+                app.find(command.semanticInterpretation.properties.name[0], true).then(function (results) {
+                    if (results && results[0]) {
+                        app.details(results[0].title);
+                    } else {
+                        // not a recognized speaker
+                    }
+	            });
 	        } else if (command.rulePath[0] === "showNext") {
-	            console.log("next!");
-	            app.findByTime(Date.now(), false);
+	            app.findByTime(undefined, false).then(function (result) {
+	                if (result) {
+	                    app.details(result.title);
+	                } else {
+                        // no sessions at this time
+	                }
+	            });
 	        }
 	    },
 		data: function() {
@@ -81,10 +94,11 @@ var app = (function() {
 			}
 		},
 		findByTime: function(time, ignoreDate) {
-			time = new Date(time);
+			time = !time ? moment() : moment(time, "hh:mma", "en");
 			if (ignoreDate) {
-				time = moment(time).date(24).month('October').year(2014).toDate();
+				time = time.date(24).month('October').year(2014);
 			}
+			time = time.toDate();
 			return res.data().then(function(data) {
 				return _.find(data.schedule, function(session) {
 					return session.start <= time.getTime() && time.getTime() < session.end;
