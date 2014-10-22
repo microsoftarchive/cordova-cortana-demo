@@ -15,6 +15,52 @@ var app = (function() {
 	}
 
 	var res = {
+	    // Application Constructor
+	    initialize: function() {
+	        this.bindEvents();
+	    },
+	    // Bind Event Listeners
+	    //
+	    // Bind any events that are required on startup. Common events are:
+	    // 'load', 'deviceready', 'offline', and 'online'.
+	    bindEvents: function() {
+	        document.addEventListener('deviceready', this.onDeviceReady, false);
+	    },
+	    // deviceready Event Handler
+	    //
+	    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+	    // function, we must explicitly call 'app.receivedEvent(...);'
+	    onDeviceReady: function () {
+	        cordova.plugins.cortana.installVoiceCommandSet('ms-appx:///www/assets/commands.vcd', function () {
+	            console.log('COMMANDS INSTALLED <from callback>');
+	            cordova.plugins.cortana.setPhraseList('phonegapday', 'name', ["Tim", "Kirk"], function () {
+	                console.log('PHRASE LIST SET <from callback>');
+	            }, function (err) {
+	                console.error('PHRASE LIST NOT SET <from callback> DUE TO ' + JSON.stringify(err));
+	            });
+	        }, function (err) {
+	            console.error('COMMANDS NOT INSTALLED <from callback> DUE TO ' + JSON.stringify(err));
+	        });
+
+	        document.addEventListener('onVoiceCommand', app.onVoiceCommand, false);
+
+	        app.schedule();
+	    },
+	    // voicecommand Event Handler
+	    //
+	    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+	    // function, we must explicitly call 'app.receivedEvent(...);'
+	    onVoiceCommand: function (command) {
+	        console.log('GOT VOICE COMMAND:');
+	        console.log(JSON.stringify(command));
+	        if (command.rulePath[0] === "showAt") {
+	            console.log("at -> " + command.semanticInterpretation.properties.time[0]);
+	        } else if (command.rulePath[0] === "showBy") {
+	            console.log("by -> " + command.semanticInterpretation.properties.name[0]);
+	        } else if (command.rulePath[0] === "showNext") {
+	            console.log("next!");
+	        }
+	    },
 		data: function() {
 			if (sessionData) {
 				return $.when(sessionData);
@@ -70,3 +116,5 @@ var app = (function() {
 
 	return res
 }());
+
+app.initialize();

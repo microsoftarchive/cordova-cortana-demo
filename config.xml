@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.msopentech.phonegapday" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>PhoneGapDay</name>
+    <description>
+        A simple Apache Cordova application that responds to Cortana voice commands on Windows phone 8.1.
+    </description>
+    <author email="msopentech@microsoft.com" href="http://cordova.io">
+        MS Open Tech Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>

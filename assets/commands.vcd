@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+
+  <CommandSet xml:lang="en-us" Name="phonegapday">
+    <CommandPrefix>phonegap day</CommandPrefix>
+    <Example>Show next</Example>
+
+    <Command Name="activateApp">
+      <Example>Activate</Example>
+      <ListenFor>Activate {*}</ListenFor>
+      <Feedback>Activating...</Feedback>
+      <Navigate/>
+    </Command>
+    
+    <Command Name="showNext">
+      <Example>Show next</Example>
+      <ListenFor>[Show] [Find] next</ListenFor>
+      <Feedback>Showing next</Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showAt">
+      <Example>Show at 1pm</Example>
+      <ListenFor>[Show] [Find] at {time}</ListenFor>
+      <Feedback>Showing at {time}</Feedback>
+      <Navigate/>
+    </Command>
+
+    <Command Name="showBy">
+      <Example>Show by Microsoft</Example>
+      <ListenFor>[Show] [Find] by {name}</ListenFor>
+      <Feedback>Showing by {name}</Feedback>
+      <Navigate/>
+    </Command>
+
+    <PhraseList Label="name">
+      <Item>Microsoft</Item>
+    </PhraseList>
+    
+    <PhraseTopic Label="time" Scenario="Search">
+      <Subject>Date/Time</Subject>
+    </PhraseTopic>
+  
+  </CommandSet>
+
+  <!-- Other CommandSets for other languages -->
+
+</VoiceCommands>
