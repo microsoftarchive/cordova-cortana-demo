@@ -54,7 +54,12 @@
 				<h3>
 					<small>Starts at: </small> <%- moment(start).format('hh:mm a') %>
 					<br/>
-					<small>Duration: </small> <%- moment.duration(end - start).humanize() %></h3>
+					<small>Duration: </small> <%- moment.duration(end - start).humanize() %>
+					<br/>
+					<% if (speakers.length > 0) {%> <small> <% if (speakers.length === 1) {%> Speaker: <% } else { %> Speakers: <% } %> </small> <em><% _.forEach(speakers, function(speaker) { %>
+								<%- speaker %>
+							<% }); %>
+						<% } %></em></h3>
 			<button class="btn btn-default goto-schedule"><span class="glyphicon glyphicon-chevron-left"></span>View Schedule</button>
 			</script>
 		</div>
