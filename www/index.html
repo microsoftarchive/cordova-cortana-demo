@@ -30,7 +30,7 @@
 			<ol class="template list-group"></ol>
 			<script type="text/template">
 				<% _.forEach(schedule, function(session) { %>
-					<a href="#" class="list-group-item row" onclick="app.details('<%-session.title %>')">
+					<a href="#" class="list-group-item row schedule-title" data-title="<%-session.title %>">
 						<div class="col-md-2">
 							<h3 class="list-group-item-heading">
 								<%- moment(session.start).format('hh:mm a')%>
@@ -55,7 +55,7 @@
 					<small>Starts at: </small> <%- moment(start).format('hh:mm a') %>
 					<br/>
 					<small>Duration: </small> <%- moment.duration(end - start).humanize() %></h3>
-			<button onclick="app.schedule()" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span>View Schedule</button>
+			<button class="btn btn-default goto-schedule"><span class="glyphicon glyphicon-chevron-left"></span>View Schedule</button>
 			</script>
 		</div>
 	</div>

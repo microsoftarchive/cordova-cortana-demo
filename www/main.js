@@ -25,6 +25,13 @@ var app = (function() {
 	    // 'load', 'deviceready', 'offline', and 'online'.
 	    bindEvents: function() {
 	        document.addEventListener('deviceready', this.onDeviceReady, false);
+	        $(document).on('click', '.schedule-title', function(){
+					app.details($(this).data('title'));
+	        });
+
+	        $(document).on('click', '.goto-schedule', function(){
+	        		app.schedule();
+	        });
 	    },
 	    // deviceready Event Handler
 	    //
