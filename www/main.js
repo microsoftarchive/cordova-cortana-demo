@@ -38,25 +38,26 @@ var app = (function() {
 	    // The scope of 'this' is the event. In order to call the 'receivedEvent'
 	    // function, we must explicitly call 'app.receivedEvent(...);'
 	    onDeviceReady: function () {
-	        cordova.plugins.cortana.installVoiceCommandSet('ms-appx:///www/assets/commands.vcd', function () {
-	            app.data().then(function(data) {
-	                var names = data.schedule.map(function (session) {
-	                    return !session.speakers ? [] : session.speakers.map(function (speaker) {
-	                		return !speaker ? [] : speaker.split(' '); 
-	                	}); 
-	                }).reduce(Function.prototype.apply.bind(Array.prototype.concat));
-	                // reduce one-liner from (http://stackoverflow.com/a/25595276)
-		            cordova.plugins.cortana.setPhraseList('phonegapday', 'name', names, function () {
-		            }, function (err) {
-		                console.error('PHRASE LIST NOT SET <from callback> DUE TO ' + JSON.stringify(err));
-		            });
+	    	if (!!cordova && !!cordova.plugins && !!cordova.plugins.cortana) {
+		        cordova.plugins.cortana.installVoiceCommandSet('ms-appx:///www/assets/commands.vcd', function () {
+		            app.data().then(function(data) {
+		                var names = data.schedule.map(function (session) {
+		                    return !session.speakers ? [] : session.speakers.map(function (speaker) {
+		                		return !speaker ? [] : speaker.split(' '); 
+		                	}); 
+		                }).reduce(Function.prototype.apply.bind(Array.prototype.concat));
+		                // reduce one-liner from (http://stackoverflow.com/a/25595276)
+			            cordova.plugins.cortana.setPhraseList('phonegapday', 'name', names, function () {
+			            }, function (err) {
+			                console.error('PHRASE LIST NOT SET <from callback> DUE TO ' + JSON.stringify(err));
+			            });
+			        });
+		        }, function (err) {
+		            console.error('COMMANDS NOT INSTALLED <from callback> DUE TO ' + JSON.stringify(err));
 		        });
-	        }, function (err) {
-	            console.error('COMMANDS NOT INSTALLED <from callback> DUE TO ' + JSON.stringify(err));
-	        });
 
-	        document.addEventListener('onVoiceCommand', app.onVoiceCommand, false);
-
+		        document.addEventListener('onVoiceCommand', app.onVoiceCommand, false);
+			}
 	        app.schedule();
 	    },
 	    // voicecommand Event Handler
