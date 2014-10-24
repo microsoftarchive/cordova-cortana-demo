@@ -1,7 +1,7 @@
 What this does
 ==============
 
-Cordova app that displays the PhoneGap day 2014 schedule and allows some simple queries using Cortana
+Cordova app that displays the PhoneGap day 2014 schedule and allows some simple queries using Cortana via this [plugin](https://github.com/MSOpenTech/cordova-cortana-plugin)
 
 build steps
 ===========
